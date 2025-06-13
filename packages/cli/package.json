@@ -1,0 +1,20 @@
+{
+  "name": "@astra/cli",
+  "version": "0.0.1",
+  "description": "Astra CLI is a lightweight, modular scaffolding tool for quickly initializing modern frontend projects with built-in templates, flexible configuration, and developer-friendly features.",
+  "author": "th",
+  "license": "MIT",
+  "packageManager": "pnpm@10.12.1",
+  "type": "module",
+  "bin": {
+    "astra-cli": "bin/cli.js"
+  },
+  "dependencies": {
+    "@astra/constants": "workspace:*",
+    "@astra/scripts": "workspace:*",
+    "chalk": "^5.4.1",
+    "child_process": "^1.0.2",
+    "commander": "^14.0.0",
+    "fs-extra": "^11.3.0"
+  }
+}

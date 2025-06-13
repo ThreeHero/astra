@@ -1,0 +1,10 @@
+{
+  "name": "@astra/constants",
+  "version": "0.0.1",
+  "description": "",
+  "author": "th",
+  "license": "MIT",
+  "main": "./index.js",
+  "packageManager": "pnpm@10.12.1",
+  "type": "module"
+}
