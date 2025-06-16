@@ -47,6 +47,7 @@ function generatePkg(name) {
     scripts: {
       [START_COMMAND]: "astra-cli dev",
       build: "astra-cli build",
+      format: "prettier --write .",
     },
     main: "./src/index.js",
     engines: {
@@ -59,7 +60,18 @@ function generatePkg(name) {
     devDependencies: {
       "@types/react": "^18.3.3",
       "@types/react-dom": "^18.3.0",
+      prettier: "^3.3.3",
     },
+    prettier: {
+      useTabs: false,
+      tabWidth: 2,
+      printWidth: 100,
+      singleQuote: true,
+      trailingComma: "none",
+      semi: false,
+      arrowParens: "avoid",
+    },
+    browserslist: [">0.5%", "last 2 versions", "not dead", "not op_mini all"],
   };
 
   return pkg;
