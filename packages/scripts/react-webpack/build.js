@@ -17,6 +17,7 @@ export async function startBuild(projectRoot, env) {
 
   const { validConfig, invalidConfig } = splitWebpackConfig(config);
   
+  env.NODE_ENV = "production";
   const tempConfig = integrationConfig(invalidConfig, env);
   config = merge(validConfig, tempConfig);
   

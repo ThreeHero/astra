@@ -6,6 +6,7 @@ export function integrationConfig(invalidConfig, env) {
   config.plugins = [
     new webpack.DefinePlugin({
       "process.env": JSON.stringify(env),
+      "process.env.NODE_ENV": JSON.stringify(env.NODE_ENV || "development"),
     }),
   ]
   return config

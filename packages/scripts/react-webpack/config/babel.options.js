@@ -33,9 +33,9 @@ function getBabelOptions(isDev = true) {
         {
           targets: "defaults",
           modules: false,
-          // useBuiltIns: "usage",
-          useBuiltIns: false, // 不使用 polyfill
-          // corejs: 3,
+          useBuiltIns: "usage",
+          // useBuiltIns: false, // 不使用 polyfill
+          corejs: 3,
         },
       ],
       [

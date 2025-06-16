@@ -1,11 +1,6 @@
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 
-// 获取当前文件的路径
-export const __filename = fileURLToPath(import.meta.url);
-// 获取当前目录的路径
-export const __dirname = dirname(__filename);
-
 /**
  * zh-CN: 包名
  * en-US: Package name
@@ -52,3 +47,12 @@ export const DEFAULT_START_PORT = 3000;
  * @type {string}
  */
 export const BASIC_NODE_VERSION = ">=16.0.0";
+
+
+export function getPathInfo(importMetaUrl = import.meta.url) {
+  // 获取当前文件的路径
+  const __filename = fileURLToPath(importMetaUrl);
+  // 获取当前目录的路径
+  const __dirname = dirname(__filename);
+  return { __filename, __dirname };
+}

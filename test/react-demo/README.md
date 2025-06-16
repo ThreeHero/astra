@@ -1,10 +1,6 @@
-当然可以，下面是一个适用于你这个基于 `astra-cli` 创建的 Webpack + React 项目的 `README.md` 初稿，你可以根据项目实际情况随时补充调整：
-
----
-
 # 🚀 Astra Webpack + React 项目模板
 
-本项目是通过 [astra-cli](https://github.com/your-org/astra-cli) 创建的 React + Webpack 项目模板，旨在为现代 Web 应用提供一个 **高性能、可扩展、易配置** 的开发起点。
+本项目是通过 astra-cli 创建的 React + Webpack 项目模板，旨在为现代 Web 应用提供一个 **高性能、可扩展、易配置** 的开发起点。
 
 ## ✨ 项目亮点
 
@@ -67,6 +63,19 @@ export default {
   port: 3001, // 本地测试使用其他端口
 };
 ```
+
+### `env.dev`
+
+开发模式环境 必须以 ASTRA_ 开头才会被捕捉到
+
+process.env使用
+
+### `env.prod`
+
+生产模式环境 必须以 ASTRA_ 开头才会被捕捉到
+
+process.env使用
+
 
 ---
 

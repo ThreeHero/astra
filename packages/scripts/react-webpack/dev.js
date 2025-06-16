@@ -19,6 +19,7 @@ export async function startDev(projectRoot, env) {
   
   const { validConfig, invalidConfig } = splitWebpackConfig(config);
   
+  env.NODE_ENV = "development";
   const tempConfig = integrationConfig(invalidConfig, env);
   config = merge(validConfig, tempConfig);
   

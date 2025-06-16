@@ -7,8 +7,10 @@ import {
   DEFAULT_TEMPLATE_NAME,
   SUPPORTED_TEMPLATES,
   START_COMMAND,
-  __dirname
+  getPathInfo,
 } from "@astra/constants";
+
+const { __dirname } = getPathInfo(import.meta.url);
 
 
 /**
@@ -55,7 +57,6 @@ function generatePkg(name) {
       "react-dom": "^18.3.0",
     },
     devDependencies: {
-      "webpack-hot-middleware": "^2.26.1",
       "@types/react": "^18.3.3",
       "@types/react-dom": "^18.3.0",
     },

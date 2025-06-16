@@ -3,7 +3,10 @@ import { merge } from "webpack-merge";
 import config from "./base.js";
 import webpack from 'webpack';
 import getLoaders from "./loaders.js";
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+import { getPathInfo } from '@astra/constants'
 
+const { __dirname } = getPathInfo(import.meta.url);
 
 export default merge(config, {
   entry: [
@@ -20,5 +23,13 @@ export default merge(config, {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(), // 热更新插件
+    new ReactRefreshWebpackPlugin(),
   ],
+  resolve: {
+    modules: [
+      path.resolve(__dirname, "../../node_modules"), // 兼容本地开发的依赖
+      path.resolve(__dirname, '../../../../node_modules'),
+      path.resolve(__dirname, '../../../../node_modules/.pnpm'),
+    ],
+  },
 });
