@@ -1,10 +1,6 @@
 import path from "path";
-import {
-  DEFAULT_EXTEND_CONFIG_NAME,
-  DEFAULT_START_PORT,
-} from "@astra/constants";
-import { fileURLToPath, pathToFileURL } from "url";
-import { existsSync } from "fs";
+import { DEFAULT_START_PORT } from "@astra/constants";
+import { getUserConfig } from "@astra/utils";
 import devConfig from "./config/dev.config.js";
 import { merge } from "webpack-merge";
 import webpack from "webpack";
@@ -17,32 +13,12 @@ import hotMiddleware from "webpack-hot-middleware";
 import chalk from "chalk";
 
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 export async function startDev(projectRoot) {
-  // 用户的配置文件路径
-  const userConfigPath = path.resolve(projectRoot, DEFAULT_EXTEND_CONFIG_NAME);
-  // 用户的本地配置文件路径 # 防止git冲突 每个人可以有自己的本地配置
-  const userLocalConfigPath = path.resolve(projectRoot, "local.config.js");
 
-  let userConfig = {};
-  let userLocalConfig = {};
   let config = {};
   
-
-  if (existsSync(userConfigPath)) {
-    // 如果用户配置文件存在，则加载它
-    userConfig =
-      (await import(pathToFileURL(userConfigPath).href)).default || {};
-  }
-  if (existsSync(userLocalConfigPath)) {
-    // 如果用户本地配置文件存在，则加载它
-    const userLocalConfig =
-      (await import(pathToFileURL(userLocalConfigPath).href)).default || {};
-  }
-  
-  config = merge(devConfig, userConfig, userLocalConfig);
+  const userConfig = await getUserConfig(true, projectRoot);
+  config = merge(devConfig, userConfig);
   
   const { validConfig, invalidConfig } = splitWebpackConfig(config);
   
@@ -87,13 +63,12 @@ export async function startDev(projectRoot) {
     netAddress = `http://${netAddress}:${port}`;
   }
   
-  
   app.listen(port, () => {
+    // spinner.succeed('开发服务器已启动'); // 停止 spinner
     console.log(
       `${chalk.green('🚀')} ${chalk.bold('开发服务器已启动')}\n` +
       `${chalk.gray('>')} ${chalk.cyan(localAddress)}\n` +
       `${chalk.gray('>')} ${chalk.cyan(netAddress)}\n` +
-      `${chalk.gray('>')} ${chalk.magenta('热更新')} 已启用，修改文件自动刷新\n` +
       `${chalk.gray('>')} 按 ${chalk.yellow.bold('Ctrl+C')} 停止服务器`
     );
   });

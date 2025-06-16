@@ -3,6 +3,7 @@ import { fileURLToPath } from "url";
 import chalk from "chalk";
 import fs from "fs-extra";
 import { execSync } from "child_process";
+import inquirer from "inquirer";
 import {
   DEFAULT_TEMPLATE_NAME,
   SUPPORTED_TEMPLATES,
@@ -21,7 +22,7 @@ const __dirname = dirname(__filename);
  * @param {string|undefined} templateName
  * @returns {string}
  */
-function checkTemplateName(templateName) {
+async function checkTemplateName(templateName) {
   const defaultTemplateName = DEFAULT_TEMPLATE_NAME;
   // If the passed templateName does not exist
   if (!templateName || typeof templateName !== "string") {
@@ -29,14 +30,22 @@ function checkTemplateName(templateName) {
   }
   // If the passed templateName is not in the supported templates list
   if (!SUPPORTED_TEMPLATES.includes(templateName)) {
-    console.warn(
-      chalk.yellowBright('⚠️  Template "') +
-        chalk.bold.yellowBright(templateName) +
-        chalk.yellowBright('" is not supported. Using default template "') +
-        chalk.bold.greenBright(defaultTemplateName) +
-        chalk.yellowBright('" instead.')
-    );
-    return defaultTemplateName;
+    // console.warn(
+    //   chalk.yellowBright('⚠️  Template "') +
+    //     chalk.bold.yellowBright(templateName) +
+    //     chalk.yellowBright('" is not supported. Using default template "') +
+    //     chalk.bold.greenBright(defaultTemplateName) +
+    //     chalk.yellowBright('" instead.')
+    // );
+    // return defaultTemplateName;
+    const answer = await inquirer.prompt({
+      type: "list",
+      name: "template",
+      message: "Please select a currently supported template:\n",
+      choices: SUPPORTED_TEMPLATES,
+      default: defaultTemplateName,
+    });
+    templateName = answer.template;
   }
   return templateName;
 }
@@ -67,7 +76,7 @@ function generatePkg(name) {
 
 export async function createCommand(name, options = {}) {
   // Check if the name is valid
-  const templateName = checkTemplateName(options.template);
+  const templateName = await checkTemplateName(options.template);
   // Directory to run command line
   const targetDir = path.resolve(process.cwd(), name);
   // Directory of the template

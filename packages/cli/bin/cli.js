@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 import { Command } from "commander";
 import { DEFAULT_TEMPLATE_NAME } from "@astra/constants";
 import { createCommand } from "../commands/create.js";

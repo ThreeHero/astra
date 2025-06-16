@@ -12,6 +12,7 @@
   "dependencies": {
     "@astra/constants": "workspace:*",
     "@astra/scripts": "workspace:*",
+    "@astra/utils": "workspace:*",
     "chalk": "^5.4.1",
     "child_process": "^1.0.2",
     "commander": "^14.0.0",

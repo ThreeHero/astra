@@ -1,10 +1,13 @@
 import scripts from '@astra/scripts';
 import chalk from 'chalk';
+import { getTemplate } from '@astra/utils'
 
 export async function devCommand(options = {}) {
   const cwd = process.cwd();
-  let dev = scripts.webpack.dev;
+  const template = await getTemplate(cwd);
+  let dev = scripts[template].dev;
 
   console.log(chalk.blueBright("🚀 启动开发服务器..."));
   dev(cwd)
 }
+

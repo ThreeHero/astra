@@ -1,31 +1,18 @@
 import path from "path";
-import {  DEFAULT_EXTEND_CONFIG_NAME } from "@astra/constants";
-import { fileURLToPath, pathToFileURL } from "url";
-import { existsSync } from "fs";
 import buildConfig from "./config/prod.config.js";
+import { getUserConfig } from "@astra/utils";
 import { merge } from "webpack-merge";
 import webpack from "webpack";
 import chalk from "chalk";
 import { splitWebpackConfig } from "./config/splitWebpackConfig.js";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 export async function startBuild(projectRoot) {
-  // 用户的配置文件路径
-  const userConfigPath = path.resolve(projectRoot, DEFAULT_EXTEND_CONFIG_NAME);
+  const userConfig = await getUserConfig(false, projectRoot);
 
-  let userConfig = {};
   let config = {};
 
-  if (existsSync(userConfigPath)) {
-    // 如果用户配置文件存在，则加载它
-    userConfig =
-      (await import(pathToFileURL(userConfigPath).href)).default || {};
-  }
-  
-    config = merge(buildConfig, userConfig);
-  
+  config = merge(buildConfig, userConfig);
 
   const { validConfig, invalidConfig } = splitWebpackConfig(config);
   

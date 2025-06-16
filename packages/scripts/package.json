@@ -9,6 +9,7 @@
   "type": "module",
   "dependencies": {
     "@astra/constants": "workspace:*",
+    "@astra/utils": "workspace:*",
     "html-webpack-plugin": "^5.6.3",
     "mini-css-extract-plugin": "^2.9.2"
   },
