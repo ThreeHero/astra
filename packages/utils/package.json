@@ -8,7 +8,8 @@
   "packageManager": "pnpm@10.12.1",
   "type": "module",
   "dependencies": {
+    "@astra/constants": "workspace:*",
     "lodash-es": "^4.17.21",
-    "@astra/constants": "workspace:*"
+    "semver": "^7.7.2"
   }
 }

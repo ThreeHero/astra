@@ -1,8 +1,9 @@
 import scripts from '@astra/scripts';
 import chalk from 'chalk';
-import { getTemplate } from '@astra/utils'
+import { getTemplate, checkEnvironment } from "@astra/utils";
 
 export async function devCommand(options = {}) {
+  checkEnvironment()
   const cwd = process.cwd();
   const template = await getTemplate(cwd);
   let dev = scripts[template].dev;

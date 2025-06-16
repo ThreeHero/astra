@@ -39,3 +39,10 @@ export const DEFAULT_EXTEND_CONFIG_NAME = "astra.config.js";
  * @type {number}
  */
 export const DEFAULT_START_PORT = 3000;
+
+/**
+ * zh-CN: 基本运行的node版本
+ * en-US: Basic running node version
+ * @type {string}
+ */
+export const BASIC_NODE_VERSION = ">=16.0.0";

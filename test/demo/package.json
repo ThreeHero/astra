@@ -2,6 +2,9 @@
   "name": "demo",
   "version": "0.0.1",
   "private": true,
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "scripts": {
     "start": "astra-cli dev",
     "build": "astra-cli build"
