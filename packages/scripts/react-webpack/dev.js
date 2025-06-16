@@ -4,16 +4,13 @@ import { getUserConfig } from "@astra/utils";
 import devConfig from "./config/dev.config.js";
 import { merge } from "webpack-merge";
 import webpack from "webpack";
-import { findAvailablePort } from "./utils/findAvailablePort.js";
-import { getLocalIPAddress } from "./utils/getLocalIPAddress.js";
-import { splitWebpackConfig } from "./config/splitWebpackConfig.js";
 import express from "express";
 import middleware from "webpack-dev-middleware";
 import hotMiddleware from "webpack-hot-middleware";
 import chalk from "chalk";
+import { findAvailablePort, getLocalIPAddress, splitWebpackConfig, integrationConfig } from './utils/index.js'
 
-
-export async function startDev(projectRoot) {
+export async function startDev(projectRoot, env) {
 
   let config = {};
   
@@ -22,9 +19,7 @@ export async function startDev(projectRoot) {
   
   const { validConfig, invalidConfig } = splitWebpackConfig(config);
   
-  const tempConfig = {
-    resolve: { alias: invalidConfig.alias || {} },
-  };
+  const tempConfig = integrationConfig(invalidConfig, env);
   config = merge(validConfig, tempConfig);
   
   const compiler = webpack(config);

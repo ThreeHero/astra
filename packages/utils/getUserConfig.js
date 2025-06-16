@@ -1,11 +1,8 @@
-import { fileURLToPath, pathToFileURL } from "url";
+import { pathToFileURL } from "url";
 import path from 'path';
 import { existsSync } from 'fs';
 import { merge } from "lodash-es";
-import { DEFAULT_EXTEND_CONFIG_NAME } from '@astra/constants';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import { DEFAULT_EXTEND_CONFIG_NAME, __dirname } from '@astra/constants';
 
 async function getUserConfig(isLocal = true, projectRoot = process.cwd()) {
 

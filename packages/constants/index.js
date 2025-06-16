@@ -1,3 +1,11 @@
+import path, { dirname } from "path";
+import { fileURLToPath } from "url";
+
+// 获取当前文件的路径
+export const __filename = fileURLToPath(import.meta.url);
+// 获取当前目录的路径
+export const __dirname = dirname(__filename);
+
 /**
  * zh-CN: 包名
  * en-US: Package name
@@ -25,13 +33,11 @@ export const SUPPORTED_TEMPLATES = ["react-webpack"];
  */
 export const START_COMMAND = "start";
 
-
 /**
  * zh-CN: 默认扩展的配置名称
  * en-US: Default extended configuration name
  */
 export const DEFAULT_EXTEND_CONFIG_NAME = "astra.config.js";
-
 
 /**
  * zh-CN: 默认启动端口号

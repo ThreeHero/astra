@@ -4,10 +4,11 @@ import { getUserConfig } from "@astra/utils";
 import { merge } from "webpack-merge";
 import webpack from "webpack";
 import chalk from "chalk";
-import { splitWebpackConfig } from "./config/splitWebpackConfig.js";
+import { splitWebpackConfig, integrationConfig } from "./utils/index.js";
 
 
-export async function startBuild(projectRoot) {
+
+export async function startBuild(projectRoot, env) {
   const userConfig = await getUserConfig(false, projectRoot);
 
   let config = {};
@@ -16,9 +17,7 @@ export async function startBuild(projectRoot) {
 
   const { validConfig, invalidConfig } = splitWebpackConfig(config);
   
-  const tempConfig = {
-    resolve: { alias: invalidConfig.alias || {} },
-  };
+  const tempConfig = integrationConfig(invalidConfig, env);
   config = merge(validConfig, tempConfig);
   
   const compiler = webpack(config);

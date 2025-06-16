@@ -1,5 +1,4 @@
-import path, { dirname } from "path";
-import { fileURLToPath } from "url";
+import path from "path";
 import chalk from "chalk";
 import fs from "fs-extra";
 import { execSync } from "child_process";
@@ -8,13 +7,9 @@ import {
   DEFAULT_TEMPLATE_NAME,
   SUPPORTED_TEMPLATES,
   START_COMMAND,
+  __dirname
 } from "@astra/constants";
 
-
-// 获取当前文件的路径
-const __filename = fileURLToPath(import.meta.url);
-// 获取当前目录的路径
-const __dirname = dirname(__filename);
 
 /**
  * zh-CN: 检查模板名称是否有效
@@ -30,14 +25,6 @@ async function checkTemplateName(templateName) {
   }
   // If the passed templateName is not in the supported templates list
   if (!SUPPORTED_TEMPLATES.includes(templateName)) {
-    // console.warn(
-    //   chalk.yellowBright('⚠️  Template "') +
-    //     chalk.bold.yellowBright(templateName) +
-    //     chalk.yellowBright('" is not supported. Using default template "') +
-    //     chalk.bold.greenBright(defaultTemplateName) +
-    //     chalk.yellowBright('" instead.')
-    // );
-    // return defaultTemplateName;
     const answer = await inquirer.prompt({
       type: "list",
       name: "template",
@@ -60,6 +47,9 @@ function generatePkg(name) {
       build: "astra-cli build",
     },
     main: "./src/index.js",
+    engines: {
+      node: ">=16.0.0",
+    },
     dependencies: {
       react: "^18.3.0",
       "react-dom": "^18.3.0",

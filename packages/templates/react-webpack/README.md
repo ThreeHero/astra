@@ -64,6 +64,19 @@ export default {
 };
 ```
 
+### `env.dev`
+
+开发模式环境 必须以 ASTRA_ 开头才会被捕捉到
+
+process.env使用
+
+### `env.prod`
+
+生产模式环境 必须以 ASTRA_ 开头才会被捕捉到
+
+process.env使用
+
+
 ---
 
 ## 📌 开发计划（进行中）

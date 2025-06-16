@@ -1,12 +1,7 @@
-import { fileURLToPath } from "url";
-import path, { dirname, resolve } from "path";
+import path from "path";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import webpackBar from "webpackbar";
-import { PACKAGE_NAME } from "@astra/constants";
-
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { PACKAGE_NAME, __dirname } from "@astra/constants";
 
 
 export default {
