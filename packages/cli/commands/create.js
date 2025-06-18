@@ -77,13 +77,18 @@ function generatePkg(name) {
   return pkg;
 }
 
+
 export async function createCommand(name, options = {}) {
   // Check if the name is valid
   const templateName = await checkTemplateName(options.template);
   // Directory to run command line
   const targetDir = path.resolve(process.cwd(), name);
   // Directory of the template
-  const templateDir = path.resolve(__dirname, "../../templates", templateName);
+  const templateDir = path.join(
+    __dirname,
+    "../templates",
+    templateName
+  );
 
   // Check if the target directory exists
   if (fs.existsSync(targetDir)) {
