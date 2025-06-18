@@ -9,6 +9,8 @@
   "bin": {
     "astra-cli": "bin/cli.js"
   },
+  "scripts": {
+  },
   "dependencies": {
     "@astra/constants": "workspace:*",
     "@astra/scripts": "workspace:*",
@@ -17,5 +19,8 @@
     "child_process": "^1.0.2",
     "commander": "^14.0.0",
     "fs-extra": "^11.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.3"
   }
 }

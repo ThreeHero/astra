@@ -5,11 +5,11 @@
   "author": "th",
   "license": "MIT",
   "packageManager": "pnpm@10.12.1",
-  "dependencies": {
+  "scripts": {},
+  "devDependencies": {
+    "@changesets/cli": "^2.29.4",
+    "chalk": "^5.4.1",
     "inquirer": "^12.6.3",
     "ora": "^8.2.0"
-  },
-  "devDependencies": {
-    "chalk": "^5.4.1"
   }
 }
