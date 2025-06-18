@@ -1,16 +1,19 @@
 {
-  "name": "@astra/repo",
-  "version": "0.0.1",
+  "name": "@thastra/repo",
+  "version": "0.0.9",
   "description": "Astra CLI is a lightweight, modular scaffolding tool for quickly initializing modern frontend projects with built-in templates, flexible configuration, and developer-friendly features.",
   "author": "th",
   "license": "MIT",
   "isMonorepo": true,
   "packageManager": "pnpm@10.12.1",
-  "scripts": {},
+  "scripts": {
+    "publish": "node ./publish.js"
+  },
   "devDependencies": {
     "@changesets/cli": "^2.29.4",
     "chalk": "^5.4.1",
-    "inquirer": "^12.6.3",
-    "ora": "^8.2.0"
-  }
+    "child_process": "^1.0.2",
+    "inquirer": "^12.6.3"
+  },
+  "dependencies": {}
 }

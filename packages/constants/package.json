@@ -1,6 +1,6 @@
 {
-  "name": "@astra/constants",
-  "version": "0.0.1",
+  "name": "@thastra/constants",
+  "version": "0.0.10",
   "publishConfig": {
     "access": "public"
   },

@@ -1,6 +1,6 @@
-import scripts from '@astra/scripts';
+import scripts from '@thastra/scripts';
 import chalk from 'chalk';
-import { getTemplate, checkEnvironment, getEnv, ExposeEnv } from "@astra/utils";
+import { getTemplate, checkEnvironment, getEnv, ExposeEnv } from "@thastra/utils";
 
 export async function devCommand(options = {}) {
   checkEnvironment()

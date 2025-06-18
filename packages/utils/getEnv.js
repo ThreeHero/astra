@@ -1,7 +1,7 @@
 import { config } from "dotenv";
 import fs from 'fs'
 import path from 'path';
-import { PACKAGE_NAME } from '@astra/constants';
+import { PACKAGE_NAME } from '@thastra/constants';
 
 /**
  * zh-CN: 获取环境变量

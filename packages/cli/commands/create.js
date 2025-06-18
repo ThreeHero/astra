@@ -8,7 +8,7 @@ import {
   SUPPORTED_TEMPLATES,
   START_COMMAND,
   getPathInfo,
-} from "@astra/constants";
+} from "@thastra/constants";
 
 const { __dirname } = getPathInfo(import.meta.url);
 

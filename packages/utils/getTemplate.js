@@ -1,6 +1,6 @@
 // 根据用户配置获取模版信息
 import getUserConfig from "./getUserConfig.js";
-import { DEFAULT_TEMPLATE_NAME, SUPPORTED_TEMPLATES } from "@astra/constants";
+import { DEFAULT_TEMPLATE_NAME, SUPPORTED_TEMPLATES } from "@thastra/constants";
 
 async function getTemplate(projectRoot) {
   const userConfig = await getUserConfig(false, projectRoot);

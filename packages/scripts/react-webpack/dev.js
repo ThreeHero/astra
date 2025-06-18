@@ -1,6 +1,6 @@
 import path from "path";
-import { DEFAULT_START_PORT } from "@astra/constants";
-import { getUserConfig } from "@astra/utils";
+import { DEFAULT_START_PORT } from "@thastra/constants";
+import { getUserConfig } from "@thastra/utils";
 import devConfig from "./config/dev.config.js";
 import { merge } from "webpack-merge";
 import webpack from "webpack";

@@ -1,6 +1,6 @@
 {
   "access": "public",
-  "scopes": ["astra"],
+  "scopes": ["thastra"],
   "baseBranch": "main",
   "updateInternalDependencies": "patch"
 }

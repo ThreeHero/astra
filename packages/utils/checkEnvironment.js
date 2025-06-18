@@ -1,5 +1,5 @@
 import { satisfies } from "semver";
-import { BASIC_NODE_VERSION } from '@astra/constants';
+import { BASIC_NODE_VERSION } from '@thastra/constants';
 import chalk from "chalk";
 import fs from 'fs'
 import path from 'path';

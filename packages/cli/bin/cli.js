@@ -1,9 +1,24 @@
 #!/usr/bin/env node
 import { Command } from "commander";
-import { DEFAULT_TEMPLATE_NAME } from "@astra/constants";
+import { DEFAULT_TEMPLATE_NAME, getPathInfo } from "@thastra/constants";
 import { createCommand } from "../commands/create.js";
 import { devCommand } from "../commands/dev.js";
 import { buildCommand } from "../commands/build.js";
+
+const { __dirname } = getPathInfo(import.meta.url);
+
+function getVersion() {
+  try {
+    const pkgPath = path.resolve(__dirname, "../package.json");
+    const content = fs.readFileSync(pkgPath, "utf-8");
+    const pkg = JSON.parse(content);
+    return pkg.version;
+  } catch (error) {
+    return "0.0.0";
+  }
+}
+
+
 
 /**
  * zh-CN: CLI 命令行工具
@@ -14,7 +29,7 @@ const program = new Command();
 program
   .name("astra-cli")
   .description("✨ Astra CLI command line tool")
-  .version("0.0.1");
+  .version(getVersion());
   
 program
   .command('create')

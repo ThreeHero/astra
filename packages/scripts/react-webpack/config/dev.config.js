@@ -4,7 +4,7 @@ import config from "./base.js";
 import webpack from 'webpack';
 import getLoaders from "./loaders.js";
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
-import { getPathInfo } from '@astra/constants'
+import { getPathInfo } from '@thastra/constants'
 
 const { __dirname } = getPathInfo(import.meta.url);
 

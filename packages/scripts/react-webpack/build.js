@@ -1,6 +1,6 @@
 import path from "path";
 import buildConfig from "./config/prod.config.js";
-import { getUserConfig } from "@astra/utils";
+import { getUserConfig } from "@thastra/utils";
 import { merge } from "webpack-merge";
 import webpack from "webpack";
 import chalk from "chalk";

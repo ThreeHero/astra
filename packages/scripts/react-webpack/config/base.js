@@ -1,7 +1,7 @@
 import path from "path";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import webpackBar from "webpackbar";
-import { PACKAGE_NAME, getPathInfo } from "@astra/constants";
+import { PACKAGE_NAME, getPathInfo } from "@thastra/constants";
 
 const { __dirname } = getPathInfo(import.meta.url);
 

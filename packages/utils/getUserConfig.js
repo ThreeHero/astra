@@ -2,7 +2,7 @@ import { pathToFileURL } from "url";
 import path from 'path';
 import { existsSync } from 'fs';
 import { merge } from "lodash-es";
-import { DEFAULT_EXTEND_CONFIG_NAME, getPathInfo } from "@astra/constants";
+import { DEFAULT_EXTEND_CONFIG_NAME, getPathInfo } from "@thastra/constants";
 
 const { __dirname } = getPathInfo(import.meta.url);
 
