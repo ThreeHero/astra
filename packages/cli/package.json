@@ -12,9 +12,7 @@
   "publishConfig": {
     "access": "public"
   },
- "files": ["lib", "templates"],
   "scripts": {
-    "prepublishOnly": "cp -r ../../templates ."
   },
   "dependencies": {
     "@astra/constants": "workspace:*",

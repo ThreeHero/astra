@@ -1,5 +1,6 @@
 {
   "access": "public",
+  "scopes": ["astra"],
   "baseBranch": "main",
   "updateInternalDependencies": "patch"
 }
