@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { Command } from "commander";
+import fs from 'fs'
 import { DEFAULT_TEMPLATE_NAME, getPathInfo } from "@thastra/constants";
 import { createCommand } from "../commands/create.js";
 import { devCommand } from "../commands/dev.js";
@@ -14,6 +15,7 @@ function getVersion() {
     const pkg = JSON.parse(content);
     return pkg.version;
   } catch (error) {
+    console.error("Error reading version:", error);
     return "0.0.0";
   }
 }
