@@ -7,7 +7,8 @@ export async function buildCommand(options = {}) {
   console.log(chalk.blueBright("🚀 启动构建..."));
   getEnv("prod");
   const cwd = process.cwd();
-  let build = scripts.webpack.build;
+  const template = getTemplate(cwd);
+  let build = scripts[template].build;
 
   const env = ExposeEnv();
   build(cwd, env);

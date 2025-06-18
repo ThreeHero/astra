@@ -60,6 +60,7 @@ function generatePkg(name) {
     devDependencies: {
       "@types/react": "^18.3.3",
       "@types/react-dom": "^18.3.0",
+      "@thastra/scripts": "^0.0.1",
       prettier: "^3.3.3",
     },
     prettier: {
