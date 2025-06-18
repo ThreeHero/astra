@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { Command } from "commander";
 import fs from 'fs'
+import path from 'path';
 import { DEFAULT_TEMPLATE_NAME, getPathInfo } from "@thastra/constants";
 import { createCommand } from "../commands/create.js";
 import { devCommand } from "../commands/dev.js";
