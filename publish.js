@@ -1,5 +1,5 @@
 const { execSync } = require("child_process");
-const chalk = require("chalk");
+const chalk = require("chalk").default;
 const path = require("path");
 const fs = require("fs");
 
@@ -41,14 +41,64 @@ function updateRootVersion() {
   return newVersion;
 }
 
+// 获取需要发布的包名称列表在 .publish文件夹中的pkgs.json文件
+function getPackageNames() {
+  const publishConfigPath = path.resolve(__dirname, ".publish", "pkgs.json");
+
+  // 检查配置文件是否存在
+  if (!fs.existsSync(publishConfigPath)) {
+    console.log(
+      chalk.yellow("未找到 .publish/pkgs.json 配置文件，将不进行发布")
+    );
+    return []; // 返回 [] 表示发布不发布包
+  }
+
+  try {
+    const publishConfig = JSON.parse(
+      fs.readFileSync(publishConfigPath, "utf-8")
+    );
+
+    // 支持两种格式：
+    // 1. { "packages": ["cli", "scripts"] }
+    // 2. ["cli", "scripts"]
+    const packageNames = Array.isArray(publishConfig)
+      ? publishConfig
+      : publishConfig.packages;
+
+    if (!Array.isArray(packageNames)) {
+      console.error(
+        chalk.red("pkgs.json 配置文件格式错误，应为数组或包含 packages 数组的对象")
+      );
+    }
+
+    console.log(chalk.blue(`将发布以下包: ${packageNames.join(", ")}`));
+    return packageNames;
+  } catch (error) {
+    console.error(chalk.red(`读取 .publish/pkgs.json 失败: ${error.message}`));
+    throw error;
+  }
+}
+
+// 重制 .publish 
+function resetPublishConfig() {
+  const publishConfigPath = path.resolve(__dirname, ".publish", "pkgs.json");
+  const defaultConfig = { packages: [] };
+  
+  fs.mkdirSync(path.dirname(publishConfigPath), { recursive: true });
+  fs.writeFileSync(publishConfigPath, JSON.stringify(defaultConfig, null, 2) + "\n");
+  console.log(chalk.green("已重置 .publish/pkgs.json 配置文件"));
+}
+
 function main() {
   const newRootVersion = updateRootVersion();
   const packagesDir = path.resolve(__dirname, "packages");
+  const publishPackages = getPackageNames();
   const packageNames = fs.readdirSync(packagesDir).filter((name) => {
     const pkgDir = path.join(packagesDir, name);
     return (
       fs.statSync(pkgDir).isDirectory() &&
-      fs.existsSync(path.join(pkgDir, "package.json"))
+      fs.existsSync(path.join(pkgDir, "package.json")) && 
+      publishPackages.includes(name)
     );
   });
 
@@ -68,6 +118,7 @@ function main() {
   run(`git commit -m "chore(release): bump version to ${newRootVersion}"`);
   run("git push");
   run("npx changeset publish");
+  resetPublishConfig()
 
   console.log("所有包发布完成 🎉");
 }
