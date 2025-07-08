@@ -42,31 +42,37 @@ class HttpClient {
 
   // 注册拦截器
   _registerInterceptors() {
-    this.instance.interceptors.request.use(this.requestInterceptor, Promise.reject);
-    this.instance.interceptors.response.use(this.responseInterceptor, this.responseErrorInterceptor);
+    this.instance.interceptors.request.use(
+      (config) => this.requestInterceptor(config, this),
+      (err) => Promise.reject(err)
+    );
+    this.instance.interceptors.response.use(
+      (response) => this.responseInterceptor(response, this),
+      (err) => this.responseErrorInterceptor(err, this)
+    );
   }
 
   // 请求拦截器
-  requestInterceptor(config) {
-    const { baseUrl, headers, onStartRequest } = this.config;
+  requestInterceptor(config, self) {
+    const { baseUrl, headers, onStartRequest } = self.config;
     if (typeof onStartRequest === "function") {
       onStartRequest(config);
     }
     config.baseURL = typeof baseUrl === "function" ? baseUrl() : baseUrl;
     config.headers = typeof headers === 'function' ? headers() : headers;
-    config = _merge(this.config, config);
-    const requestId = this._generateRequestId(config);
+    config = _merge(self.config, config);
+    const requestId = self._generateRequestId(config);
     // 用于取消请求的控制器
     const controller = new AbortController();
     config.signal = controller.signal;
-    this.controllerMap.set(requestId, controller);
+    self.controllerMap.set(requestId, controller);
     return config;
   }
   // 响应拦截器
-  responseInterceptor(response) {
+  responseInterceptor(response, self) {
     const { transformResult, onEndRequest } = response.config || {};
-    const requestId = this._generateRequestId(response.config);
-    this.controllerMap.delete(requestId);
+    const requestId = self._generateRequestId(response.config);
+    self.controllerMap.delete(requestId);
     if (typeof onEndRequest === "function") {
       onEndRequest(response);
     }
@@ -76,11 +82,11 @@ class HttpClient {
     return response;
   }
   // 响应失败拦截器
-  responseErrorInterceptor(error) {
+  responseErrorInterceptor(error, self) {
     const { onErrorRequest } = error.config || {};
-    const requestId = this._generateRequestId(error.config);
-    this.controllerMap.delete(requestId);
-    
+    const requestId = self._generateRequestId(error.config);
+    self.controllerMap.delete(requestId);
+
     if (typeof onErrorRequest === "function") {
       onErrorRequest(error);
     }
