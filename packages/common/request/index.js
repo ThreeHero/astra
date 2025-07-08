@@ -42,8 +42,8 @@ class HttpClient {
 
   // 注册拦截器
   _registerInterceptors() {
-    this.instance.interceptors.request.use(requestInterceptor, Promise.reject);
-    this.instance.interceptors.response.use(responseInterceptor, responseErrorInterceptor);
+    this.instance.interceptors.request.use(this.requestInterceptor, Promise.reject);
+    this.instance.interceptors.response.use(this.responseInterceptor, this.responseErrorInterceptor);
   }
 
   // 请求拦截器
