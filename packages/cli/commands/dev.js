@@ -1,6 +1,10 @@
-import scripts from '@thastra/scripts';
+import rwscript from '@thastra/rwscript';
 import chalk from 'chalk';
 import { getTemplate, checkEnvironment, getEnv, ExposeEnv } from "@thastra/utils";
+
+const scripts = {
+  'react-webpack': rwscript.startDev
+}
 
 export async function devCommand(options = {}) {
   checkEnvironment()
@@ -8,7 +12,7 @@ export async function devCommand(options = {}) {
   getEnv('dev')
   const cwd = process.cwd();
   const template = await getTemplate(cwd);
-  let dev = scripts[template].dev;
+  let dev = scripts[template];
 
   const env = ExposeEnv();
   dev(cwd, env)

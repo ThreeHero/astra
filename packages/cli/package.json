@@ -1,6 +1,6 @@
 {
   "name": "@thastra/cli",
-  "version": "0.1.2",
+  "version": "0.2.1",
   "description": "Astra CLI is a lightweight, modular scaffolding tool for quickly initializing modern frontend projects with built-in templates, flexible configuration, and developer-friendly features.",
   "author": "th",
   "license": "MIT",
@@ -15,7 +15,7 @@
   "scripts": {},
   "dependencies": {
     "@thastra/constants": "workspace:*",
-    "@thastra/scripts": "workspace:*",
+    "@thastra/rwscript": "workspace:*",
     "@thastra/utils": "workspace:*",
     "chalk": "^5.4.1",
     "child_process": "^1.0.2",
