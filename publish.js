@@ -114,11 +114,11 @@ function main() {
   );
   const version = rootPkg.version;
   
+  resetPublishConfig();
   run("git add .")
   run(`git commit -m "chore(release): bump version to ${newRootVersion}"`);
   run("git push");
   run("npx changeset publish");
-  resetPublishConfig()
 
   console.log("所有包发布完成 🎉");
 }
