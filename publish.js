@@ -79,7 +79,7 @@ function getPackageNames() {
   }
 }
 
-// 重制 .publish 
+// 重置 .publish 
 function resetPublishConfig() {
   const publishConfigPath = path.resolve(__dirname, ".publish", "pkgs.json");
   const defaultConfig = { packages: [] };
@@ -97,8 +97,8 @@ function main() {
     const pkgDir = path.join(packagesDir, name);
     return (
       fs.statSync(pkgDir).isDirectory() &&
-      fs.existsSync(path.join(pkgDir, "package.json")) && 
-      publishPackages.includes(name)
+      fs.existsSync(path.join(pkgDir, "package.json")) &&
+      (publishPackages[0] == 'all' ? true : publishPackages.includes(name))
     );
   });
 
